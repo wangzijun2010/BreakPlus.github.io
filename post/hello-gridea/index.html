@@ -1,102 +1,105 @@
+
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+<meta charset="utf-8" >
+
 <title>树形 dp 学习笔记 | Gridea</title>
-<link rel="shortcut icon" href="https://wangzijun2010.github.io/BreakPlus.github.io/favicon.ico?v=1628050348074">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://wangzijun2010.github.io/BreakPlus.github.io/favicon.ico?v=1628050366091">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://wangzijun2010.github.io/BreakPlus.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="树形 dp 学习笔记 | Gridea - Atom Feed" href="https://wangzijun2010.github.io/BreakPlus.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-Part\text{Part}Part #000 树形 dp\text{dp}dp 是什么
-众所周知，树是一个有 nnn 个节点，n−1n-1n−1 条无向边的图。这种图可以表示一些事物之间的关系，且这种关系是联通的、无环的。当动态规划建..." />
-    <meta name="keywords" content="Gridea" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://wangzijun2010.github.io/BreakPlus.github.io">
-  <img class="avatar" src="https://wangzijun2010.github.io/BreakPlus.github.io/images/avatar.png?v=1628050348074" alt="">
-  </a>
-  <h1 class="site-title">
-    Gridea
-  </h1>
-  <p class="site-description">
-    温故而知新
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://wangzijun2010.github.io/BreakPlus.github.io">
+        <img class="avatar" src="https://wangzijun2010.github.io/BreakPlus.github.io/images/avatar.png?v=1628050366091" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://wangzijun2010.github.io/BreakPlus.github.io">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
   </div>
 </div>
 
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
         <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              树形 dp 学习笔记
-            </h2>
-            <div class="post-info">
-              <span>
-                2018-12-12
-              </span>
-              <span>
-                22 min read
-              </span>
-              
-                <a href="https://wangzijun2010.github.io/BreakPlus.github.io/tag/Ut5ZZpOM5/" class="post-tag">
-                  # Gridea
-                </a>
-              
+          
+            <div class="feature-container" style="background-image: url('https://cdn.luogu.com.cn/upload/image_hosting/c1prpg6e.png')">
             </div>
+          
+          <h2 class="post-title">树形 dp 学习笔记</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2018-12-12</span>
             
-              <img class="post-feature-image" src="https://cdn.luogu.com.cn/upload/image_hosting/c1prpg6e.png" alt="">
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://wangzijun2010.github.io/BreakPlus.github.io/tag/Ut5ZZpOM5/">
+                    Gridea
+                    
+                  </a>
+                
+              </span>
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <!-- more -->
+          </div>
+          <div class="post-content">
+            <!-- more -->
 <h2 id="textpart-0-树形-textdp-是什么"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Part</mtext></mrow><annotation encoding="application/x-tex">\text{Part}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Part</span></span></span></span></span> #<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 树形 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>dp</mtext></mrow><annotation encoding="application/x-tex">\text{dp}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">dp</span></span></span></span></span> 是什么</h2>
 <p>众所周知，树是一个有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个节点，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 条无向边的图。这种图可以表示一些事物之间的关系，且这种关系是联通的、无环的。当动态规划建立在一种依赖关系（或者其它互相的关系）之上，树形 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>dp</mtext></mrow><annotation encoding="application/x-tex">\text{dp}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">dp</span></span></span></span></span> 便是解决这类问题的好帮手。</p>
 <p>通常对于树上的每一个节点，我们要求的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>dp</mtext></mrow><annotation encoding="application/x-tex">\text{dp}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">dp</span></span></span></span></span> 的值通过其父亲节点/儿子节点推算过来。对于特殊的节点（根节点、叶子节点），有时需要初始化。</p>
@@ -350,85 +353,49 @@ main
 <hr>
 <p>完结散花！❀❀❀</p>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#textpart-0-%E6%A0%91%E5%BD%A2-textdp-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Part</mtext></mrow><annotation encoding="application/x-tex">\text{Part}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Part</span></span></span></span></span> #<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 树形 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>dp</mtext></mrow><annotation encoding="application/x-tex">\text{dp}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">dp</span></span></span></span></span> 是什么</a></li>
-<li><a href="#textpart-1-%E6%A0%91%E5%BD%A2-textdp-%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Part</mtext></mrow><annotation encoding="application/x-tex">\text{Part}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Part</span></span></span></span></span> #<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 树形 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>dp</mtext></mrow><annotation encoding="application/x-tex">\text{dp}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">dp</span></span></span></span></span> 的架构</a></li>
-<li><a href="#textpart-2-%E6%A0%91%E5%BD%A2-textdp-%E4%B9%A0%E9%A2%98"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Part</mtext></mrow><annotation encoding="application/x-tex">\text{Part}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Part</span></span></span></span></span> #<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 树形 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>dp</mtext></mrow><annotation encoding="application/x-tex">\text{dp}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">dp</span></span></span></span></span> 习题</a>
-<ul>
-<li><a href="#textpart-21-%E7%AE%80%E5%8D%95%E8%AE%A1%E7%AE%97"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Part</mtext></mrow><annotation encoding="application/x-tex">\text{Part}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Part</span></span></span></span></span> #<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2.1</mn></mrow><annotation encoding="application/x-tex">2.1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">1</span></span></span></span> 简单计算</a></li>
-<li><a href="#textpart-22-%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Part</mtext></mrow><annotation encoding="application/x-tex">\text{Part}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Part</span></span></span></span></span> #<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2.2</mn></mrow><annotation encoding="application/x-tex">2.2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">2</span></span></span></span> 树的直径</a></li>
-<li><a href="#textpart-230-%E9%93%BA%E5%9E%AB%E5%88%86%E9%85%8D%E5%AD%90%E6%A0%91%E5%BC%95%E5%85%A5%E8%83%8C%E5%8C%85"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Part</mtext></mrow><annotation encoding="application/x-tex">\text{Part}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Part</span></span></span></span></span> #<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2.3.0</mn></mrow><annotation encoding="application/x-tex">2.3.0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">3</span><span class="mord">.</span><span class="mord">0</span></span></span></span> 铺垫：分配子树，引入背包</a></li>
-<li><a href="#textpart-231-%E6%A0%91%E4%B8%8A%E7%9A%84%E8%83%8C%E5%8C%85-textdp"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Part</mtext></mrow><annotation encoding="application/x-tex">\text{Part}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Part</span></span></span></span></span> #<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2.3.1</mn></mrow><annotation encoding="application/x-tex">2.3.1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">3</span><span class="mord">.</span><span class="mord">1</span></span></span></span> 树上的背包 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>dp</mtext></mrow><annotation encoding="application/x-tex">\text{dp}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">dp</span></span></span></span></span></a></li>
-<li><a href="#textpart-24-%E6%8D%A2%E6%A0%B9-textdp-%E5%9F%BA%E7%A1%80"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Part</mtext></mrow><annotation encoding="application/x-tex">\text{Part}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Part</span></span></span></span></span> #<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2.4</mn></mrow><annotation encoding="application/x-tex">2.4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">4</span></span></span></span> 换根 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>dp</mtext></mrow><annotation encoding="application/x-tex">\text{dp}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">dp</span></span></span></span></span> 基础</a></li>
-<li><a href="#textpart-25-%E6%90%AD%E9%85%8D%E4%BA%8C%E5%88%86"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Part</mtext></mrow><annotation encoding="application/x-tex">\text{Part}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Part</span></span></span></span></span> #<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2.5</mn></mrow><annotation encoding="application/x-tex">2.5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">5</span></span></span></span> 搭配二分</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-              </div>
-            </div>
-          </article>
+          </div>
         </div>
 
         
+      </div>
 
-        
+      
 
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://wangzijun2010.github.io/BreakPlus.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
+      <div class="site-footer">
+  <div class="slogan">温故而知新</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://wangzijun2010.github.io/BreakPlus.github.io/atom.xml" target="_blank">RSS</a>
 </div>
 
-      </div>
+
     </div>
+    <script type="application/javascript">
 
-    <script>
-      hljs.initHighlightingOnLoad()
+hljs.initHighlightingOnLoad()
 
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
+</script>
 
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
 
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
 
-    </script>
+
   </body>
 </html>
