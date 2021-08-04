@@ -1,97 +1,94 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>区间 dp 总结+题解 | BreakPlus</title>
-<link rel="shortcut icon" href="https://wangzijun2010.github.io/BreakPlus.github.io/favicon.ico?v=1628055561452">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<meta name="description" content="Change destiny with faith.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://wangzijun2010.github.io/BreakPlus.github.io/favicon.ico?v=1628055676587">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://wangzijun2010.github.io/BreakPlus.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="区间 dp 总结+题解 | BreakPlus - Atom Feed" href="https://wangzijun2010.github.io/BreakPlus.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
-    <meta name="description" content="（简书、洛谷 求赞！）
-Update On 2021/6/26:
-才发现我获得的赞数在历次日报中算是很高的一个，挂在主页的时间也很长，真的很感谢大家对我的支持，以后一定会继续努力，写出更好的文章，供大家参考！
-Part\text{Part}..." />
-    <meta name="keywords" content="" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://wangzijun2010.github.io/BreakPlus.github.io">
-  <img class="avatar" src="https://wangzijun2010.github.io/BreakPlus.github.io/images/avatar.png?v=1628055561452" alt="">
-  </a>
-  <h1 class="site-title">
-    BreakPlus
-  </h1>
-  <p class="site-description">
-    Change destiny with faith.
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://wangzijun2010.github.io/BreakPlus.github.io">BreakPlus</a></h3>
   </div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-</div>
-
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              区间 dp 总结+题解
-            </h2>
-            <div class="post-info">
-              <span>
-                2021-08-04
-              </span>
-              <span>
-                18 min read
-              </span>
-              
-            </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <p>（<a href="https://www.jianshu.com/p/9563992b04ec">简书</a>、<a href="https://www.luogu.com.cn/blog/BreakPlus/ou-jian-dp-zong-jie-ti-xie">洛谷</a> 求赞！）</p>
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>区间 dp 总结+题解</h1>
+            <p class="article-meta">
+              2021-08-04
+              
+            </p>
+            
+            <div class="post-content">
+              <p>（<a href="https://www.jianshu.com/p/9563992b04ec">简书</a>、<a href="https://www.luogu.com.cn/blog/BreakPlus/ou-jian-dp-zong-jie-ti-xie">洛谷</a> 求赞！）</p>
 <p>Update On 2021/6/26:</p>
 <p>才发现我获得的赞数在历次日报中算是很高的一个，挂在主页的时间也很长，真的很感谢大家对我的支持，以后一定会继续努力，写出更好的文章，供大家参考！</p>
 <h2 id="textpart-0-区间-textdp-是什么"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Part</mtext></mrow><annotation encoding="application/x-tex">\text{Part}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Part</span></span></span></span></span> #<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 区间 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>dp</mtext></mrow><annotation encoding="application/x-tex">\text{dp}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">dp</span></span></span></span></span> 是什么</h2>
@@ -273,93 +270,98 @@ f[i][j][1]=min(f[i][j][1],f[i][j-1][0]+(a[j]-a[i])*(sum[i-1]+sum[n]-sum[j-1]));
 <li>所有人：四边形不等式不会讲，敬请期待下一篇文章；推荐的题目都看过了，请大家先别推荐有其它的较难算法的区间 dp 题目或思维难度 <strong>超过提高组难度</strong> 的。</li>
 </ol>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#textpart-0-%E5%8C%BA%E9%97%B4-textdp-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Part</mtext></mrow><annotation encoding="application/x-tex">\text{Part}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Part</span></span></span></span></span> #<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 区间 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>dp</mtext></mrow><annotation encoding="application/x-tex">\text{dp}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">dp</span></span></span></span></span> 是什么</a></li>
-<li><a href="#textpart-1-%E5%8C%BA%E9%97%B4-textdp-%E6%9E%B6%E6%9E%84"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Part</mtext></mrow><annotation encoding="application/x-tex">\text{Part}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Part</span></span></span></span></span> #<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 区间 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>dp</mtext></mrow><annotation encoding="application/x-tex">\text{dp}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">dp</span></span></span></span></span> 架构</a></li>
-<li><a href="#textpart-2-%E7%A5%9E%E5%A5%87%E7%9A%84%E5%A5%97%E8%B7%AF%E4%BB%AC"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Part</mtext></mrow><annotation encoding="application/x-tex">\text{Part}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Part</span></span></span></span></span> #<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 神奇的“套路”们</a>
-<ul>
-<li><a href="#textpart-21-%E7%9F%B3%E5%AD%90%E5%90%88%E5%B9%B6%E7%B1%BB%E5%A5%97%E8%B7%AF"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Part</mtext></mrow><annotation encoding="application/x-tex">\text{Part}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Part</span></span></span></span></span> #<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2.1</mn></mrow><annotation encoding="application/x-tex">2.1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">1</span></span></span></span> 石子合并类套路</a></li>
-<li><a href="#textpart-22-%E5%8F%96%E4%B8%80%E7%AB%AF%E4%B8%A4%E7%AB%AF%E5%A5%97%E8%B7%AF"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Part</mtext></mrow><annotation encoding="application/x-tex">\text{Part}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Part</span></span></span></span></span> #<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2.2</mn></mrow><annotation encoding="application/x-tex">2.2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">2</span></span></span></span> 取一端/两端套路</a></li>
-<li><a href="#textpart-23-%E5%85%B3%E8%B7%AF%E7%81%AF%E5%A5%97%E8%B7%AF"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Part</mtext></mrow><annotation encoding="application/x-tex">\text{Part}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Part</span></span></span></span></span> #<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2.3</mn></mrow><annotation encoding="application/x-tex">2.3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">3</span></span></span></span> 关路灯套路</a></li>
-<li><a href="#textpart-24-%E6%89%BE%E5%AF%B9%E8%B1%A1%E5%A5%97%E8%B7%AF"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Part</mtext></mrow><annotation encoding="application/x-tex">\text{Part}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Part</span></span></span></span></span> #<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2.4</mn></mrow><annotation encoding="application/x-tex">2.4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">4</span></span></span></span> “找对象”套路</a></li>
-<li><a href="#textpart-25-%E6%B6%82%E8%89%B2%E5%A5%97%E8%B7%AF"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Part</mtext></mrow><annotation encoding="application/x-tex">\text{Part}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Part</span></span></span></span></span> #<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2.5</mn></mrow><annotation encoding="application/x-tex">2.5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">5</span></span></span></span> 涂色套路</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-              </div>
             </div>
           </article>
         </div>
-
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://wangzijun2010.github.io/BreakPlus.github.io/post/treedp/">
+                <h3 class="post-title">
+                  树形 dp 学习笔记
+                </h3>
+              </a>
+            </div>
+          
+        </div>
         
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://wangzijun2010.github.io/BreakPlus.github.io/post/treedp/">
-              <h3 class="post-title">
-                树形 dp 学习笔记
-              </h3>
-            </a>
-          </div>
-        
+      </div>
 
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://wangzijun2010.github.io/BreakPlus.github.io/images/avatar.png?v=1628055676587" class="no-responsive avatar">
+    <div class="text-muted">Change destiny with faith.</div>
+    <div class="social-container">
+      
         
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a href="https://www.luogu.com.cn/user/334727" target="_blank">BreakPlus</a> 
-  <a class="rss" href="https://wangzijun2010.github.io/BreakPlus.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://wangzijun2010.github.io/BreakPlus.github.io/post/sectiondp/">区间 dp 总结+题解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://wangzijun2010.github.io/BreakPlus.github.io/post/treedp/">树形 dp 学习笔记</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://wangzijun2010.github.io/BreakPlus.github.io/tag/Ut5ZZpOM5/" class="badge success">
+          Gridea
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a href="https://www.luogu.com.cn/user/334727" target="_blank">BreakPlus</a>  | <a class="rss" href="https://wangzijun2010.github.io/BreakPlus.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
 </div>
 
-      </div>
+
     </div>
 
-    <script>
-      hljs.initHighlightingOnLoad()
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+<script type="application/javascript">
 
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
+AOS.init();
 
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
+hljs.initHighlightingOnLoad()
 
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
+</script>
 
-    </script>
+
+
+
   </body>
 </html>
